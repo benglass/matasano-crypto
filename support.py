@@ -71,3 +71,6 @@ def calculate_english_language_probability_score(string):
         return 0
 
     return score_string_by_char_freq(string, CHAR_FREQUENCY_WEIGHTS)
+
+def get_common_ascii_chars():
+    return list(map(chr, range(30, 123)))
