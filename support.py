@@ -29,6 +29,20 @@ def string_single_char_xor(string, char):
     xord = [ chr(b ^ ord(char)) for b in stringbytes ]
     return ''.join(xord)
 
+def guess_string_single_char_xor(string, xor_char_candidates, score_threshold=100, max_guesses=1):
+    guesses = []
+
+    for char in xor_char_candidates:
+        decoded = string_single_char_xor(string, char)
+        score = calculate_english_language_probability_score(decoded)
+        if not score_threshold or score >= score_threshold:
+            guesses.append((char, score, decoded))
+
+    if not max_guesses:
+        return guesses
+
+    return sorted(guesses, key=lambda guess: guess[1], reverse=True)[:max_guesses]
+
 CHAR_FREQUENCY_WEIGHTS = [
     ('e',13.0001),
     ('t',9.056),
