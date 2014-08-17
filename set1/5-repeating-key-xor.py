@@ -12,5 +12,6 @@ for char in CLEARTEXT:
     k = next(KEYS)
     encrypted.append(support.string_single_char_xor(char, k))
 
+# they match except for the newline is missing from mine
 print ''.join(encrypted).encode('hex')
 print EXPECTED
