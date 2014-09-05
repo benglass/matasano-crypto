@@ -88,3 +88,13 @@ def calculate_english_language_probability_score(string):
 
 def get_common_ascii_chars():
     return list(map(chr, range(30, 123)))
+
+def calculate_hamming_distance(str1, str2):
+    distance = 0
+    bytes1 = bytes(str1)
+    bytes2 = bytes(str2)
+
+    for i in range(0, len(bytes1)):
+        distance += bin(ord(bytes1[i]) ^ ord(bytes2[i])).count("1")
+
+    return distance
